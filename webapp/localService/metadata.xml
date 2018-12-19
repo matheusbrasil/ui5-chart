@@ -1,0 +1,45 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="S1">
+			<EntityType Name="Region">
+				<Key>
+					<PropertyRef Name="Id"/>
+				</Key>
+				<Property Name="Id" Type="Edm.Int32" Nullable="false" sap:label=""></Property>
+				<Property Name="Name" Type="Edm.String" Nullable="false" sap:label=""></Property>
+				<NavigationProperty Name="ToSales" Relationship="S1.Region_SalesByRegion" ToRole="Child" FromRole="Parent"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="SalesByRegion">
+				<Key>
+					<PropertyRef Name="Year"/>
+					<PropertyRef Name="Month"/>
+					<PropertyRef Name="Region"/>
+				</Key>
+				<Property Name="Year" Type="Edm.String" Nullable="false" sap:label=""></Property>
+				<Property Name="Month" Type="Edm.String" Nullable="false" sap:label=""></Property>
+				<Property Name="Region" Type="Edm.Int32" Nullable="false" sap:label=""></Property>
+				<Property Name="Revenue" Type="Edm.Double" Nullable="false" sap:label=""></Property>
+			</EntityType>
+			<Association Name="Region_SalesByRegion">
+				<End Type="S1.Region" Role="Parent" Multiplicity="1"></End>
+				<End Type="S1.SalesByRegion" Role="Child" Multiplicity="*"></End>
+				<ReferentialConstraint>
+					<Principal Role="Parent">
+						<PropertyRef Name="Id"/>
+					</Principal>
+					<Dependent Role="Child">
+						<PropertyRef Name="Region"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="EC1" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="Regions" EntityType="S1.Region"></EntitySet>
+				<EntitySet Name="SalesByRegions" EntityType="S1.SalesByRegion"></EntitySet>
+				<AssociationSet Name="Regions_SalesByRegions" Association="S1.Region_SalesByRegion">
+					<End Role="Parent" EntitySet="Regions"></End>
+					<End Role="Child" EntitySet="SalesByRegions"></End>
+				</AssociationSet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+[{
+	"Year": "2016",
+	"Month": "01",
+	"Region": 1,
+	"Revenue": "100"
+}, {
+	"Year": "2017",
+	"Month": "01",
+	"Region": 1,
+	"Revenue": "200"
+}, {
+	"Year": "2018",
+	"Month": "01",
+	"Region": 1,
+	"Revenue": "300"
+}, {
+	"Year": "2016",
+	"Month": "02",
+	"Region": 2,
+	"Revenue": "315"
+}, {
+	"Year": "2017",
+	"Month": "02",
+	"Region": 2,
+	"Revenue": "416"
+}, {
+	"Year": "2018",
+	"Month": "02",
+	"Region": 2,
+	"Revenue": "664"
+}]
