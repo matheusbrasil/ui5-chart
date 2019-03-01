@@ -10,6 +10,28 @@
 							<core:Item key="{Id}" text="{Name}"/>
 						</items>
 					</Select>
+					<viz:VizFrame id="chart" selectData="onSelectData" vizProperties="{chart>/properties}" vizType="column">
+						<viz:dataset>
+							<data:FlattenedDataset data="{ToSales}">
+								<data:dimensions>
+									<!--<data:DimensionDefinition name="Regiao" value="{Region}"/>-->
+									<data:DimensionDefinition name="Ano" value="{Year}"/>
+									<data:DimensionDefinition name="Mes" value="{Month}"/>
+								</data:dimensions>
+								<data:measures>
+									<data:MeasureDefinition name="Total" value="{Revenue}"/>
+									<data:MeasureDefinition name="Objetivo" value="{= ${Revenue} / 2 }"/>
+								</data:measures>
+							</data:FlattenedDataset>
+						</viz:dataset>
+						<viz:feeds>
+							<!--<feeds:FeedItem type="Dimension" values="Regiao" uid="categoryAxis" />-->
+							<feeds:FeedItem type="Dimension" values="Ano" uid="categoryAxis"/>
+							<feeds:FeedItem type="Dimension" values="Mes" uid="categoryAxis"/>
+							<feeds:FeedItem type="Measure" values="Total" uid="valueAxis"/>
+							<feeds:FeedItem type="Measure" values="Objetivo" uid="valueAxis"/>
+						</viz:feeds>
+					</viz:VizFrame>
 				</content>
 			</Page>
 		</pages>
